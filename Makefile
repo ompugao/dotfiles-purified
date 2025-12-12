@@ -69,12 +69,11 @@ update:
 PKGDEPS = wget curl unzip autoconf git fontconfig tmux build-essential gcc pkg-config
 VIM_DEPS=python3-dev libncurses-dev luajit libluajit-5.1-dev libacl1-dev libgpm-dev libxtst-dev build-essential gcc libxmu-dev libgtk-3-dev libxpm-dev
 #NVIM_DEPS=ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
-RUBY_DEPS=build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libffi-dev libgmp-dev #rustc
 NODEJS_DEPS = libatomic1
 ATUIN_DEPS = build-essential gcc
 aptget_update:
 	${SUDO} apt-get update -y
-$(PKGDEPS) $(VIM_DEPS) $(NODEJS_DEPS) $(RUBY_DEPS) $(ATUIN_DEPS): aptget_update
+$(PKGDEPS) $(VIM_DEPS) $(NODEJS_DEPS) $(ATUIN_DEPS): aptget_update
 	@echo Install $@
 	@dpkg-query --show --showformat='$${db:Status-abbrev}' $@ 2>/dev/null|grep -q '^i' || ${SUDO} apt-get install $@ -y
 install_deps: $(PKGDEPS)
@@ -200,13 +199,8 @@ install_deno: install_mise
 	${prefix}/.local/bin/mise use -g deno@latest
 	${prefix}/.local/bin/mise reshim
 
-.PHONY: install_ruby
-install_ruby: install_mise $(RUBY_DEPS)
-	${prefix}/.local/bin/mise use -g ruby@3.4.1
-	${prefix}/.local/bin/mise reshim
-
 .PHONY: install_langs
-install_langs: install_rust install_nodejs install_golang install_deno install_ruby
+install_langs: install_rust install_nodejs install_golang install_deno
 
 .PHONY: install_cargo_binstall
 install_cargo_binstall: install_mise
