@@ -151,7 +151,7 @@ ${prefix}/.skkjisyo/SKK-JISYO.L:
 #	curl -fsSkL https://raw.github.com/cask/cask/master/go | python
 
 .PHONY: install_tpm
-install_tpm: ${prefix}/.tmux/plugins/tpm
+install_tpm: tmux ${prefix}/.tmux/plugins/tpm
 ${prefix}/.tmux/plugins/tpm:
 	git clone https://github.com/tmux-plugins/tpm ${prefix}/.tmux/plugins/tpm
 	${prefix}/.tmux/plugins/tpm/bin/install_plugins
@@ -310,7 +310,7 @@ install_atuin: install_deps install_rust ${prefix}/.local/share/mise/shims/atuin
 
 .PHONY: install_patto
 install_patto: install_deps install_rust
-	cargo install --git https://github.com/ompugao/patto
+	${prefix}/.local/share/mise/shims/cargo install --git https://github.com/ompugao/patto
 
 ${prefix}/.config/alacritty/themes:
 	git clone https://github.com/eendroroy/alacritty-theme.git $@
