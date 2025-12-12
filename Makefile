@@ -77,7 +77,7 @@ NODEJS_DEPS = libatomic1
 ATUIN_DEPS = build-essential gcc
 aptget_update:
 	${SUDO} apt-get update -y
-$(PKGDEPS) $(NODEJS_DEPS) $(ATUIN_DEPS): aptget_update
+$(PKGDEPS) $(VIM_DEPS) $(RUBY_DEPS) $(NODEJS_DEPS) $(ATUIN_DEPS): aptget_update
 	@echo Install $@
 	@dpkg-query --show --showformat='$${db:Status-abbrev}' $@ 2>/dev/null|grep -q '^i' || ${SUDO} apt-get install $@ -y
 install_deps: $(PKGDEPS)
