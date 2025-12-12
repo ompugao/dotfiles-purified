@@ -65,13 +65,16 @@ update:
 
 # universal-ctags requires: pkg-config
 .PHONY: install_deps
+.PHONY: aptget_update
 PKGDEPS = wget curl unzip autoconf git fontconfig tmux build-essential gcc pkg-config
 VIM_DEPS=python3-dev libncurses-dev luajit libluajit-5.1-dev libacl1-dev libgpm-dev libxtst-dev build-essential gcc libxmu-dev libgtk-3-dev libxpm-dev
 #NVIM_DEPS=ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
 RUBY_DEPS=build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libffi-dev libgmp-dev #rustc
 NODEJS_DEPS = libatomic1
 ATUIN_DEPS = build-essential gcc
-$(PKGDEPS) $(VIM_DEPS) $(NODEJS_DEPS) $(RUBY_DEPS) $(ATUIN_DEPS):
+aptget_update:
+	${SUDO} apt-get update -y
+$(PKGDEPS) $(VIM_DEPS) $(NODEJS_DEPS) $(RUBY_DEPS) $(ATUIN_DEPS): aptget_update
 	@echo Install $@
 	@dpkg-query --show --showformat='$${db:Status-abbrev}' $@ 2>/dev/null|grep -q '^i' || ${SUDO} apt-get install $@ -y
 install_deps: $(PKGDEPS)
