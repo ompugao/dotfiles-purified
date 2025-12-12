@@ -152,7 +152,7 @@ ${prefix}/.skkjisyo/SKK-JISYO.L:
 
 .PHONY: install_tpm
 install_tpm: tmux ${prefix}/.tmux/plugins/tpm
-${prefix}/.tmux/plugins/tpm:
+${prefix}/.tmux/plugins/tpm: append_source
 	git clone https://github.com/tmux-plugins/tpm ${prefix}/.tmux/plugins/tpm
 	${prefix}/.tmux/plugins/tpm/bin/install_plugins
 
