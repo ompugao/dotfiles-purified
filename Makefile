@@ -67,13 +67,13 @@ update:
 .PHONY: install_deps
 .PHONY: aptget_update
 PKGDEPS = wget curl unzip autoconf git fontconfig tmux build-essential gcc pkg-config
-VIM_DEPS=python3-dev libncurses-dev luajit libluajit-5.1-dev libacl1-dev libgpm-dev libxtst-dev build-essential gcc libxmu-dev libgtk-3-dev libxpm-dev
+#VIM_DEPS=python3-dev libncurses-dev luajit libluajit-5.1-dev libacl1-dev libgpm-dev libxtst-dev build-essential gcc libxmu-dev libgtk-3-dev libxpm-dev
 #NVIM_DEPS=ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
 NODEJS_DEPS = libatomic1
 ATUIN_DEPS = build-essential gcc
 aptget_update:
 	${SUDO} apt-get update -y
-$(PKGDEPS) $(VIM_DEPS) $(NODEJS_DEPS) $(ATUIN_DEPS): aptget_update
+$(PKGDEPS) $(NODEJS_DEPS) $(ATUIN_DEPS): aptget_update
 	@echo Install $@
 	@dpkg-query --show --showformat='$${db:Status-abbrev}' $@ 2>/dev/null|grep -q '^i' || ${SUDO} apt-get install $@ -y
 install_deps: $(PKGDEPS)
@@ -89,11 +89,11 @@ append_source: .source_appended
 	echo "source ${PWD}/.tmux.conf" >> ${prefix}/.tmux.conf
 	touch ${PWD}/.source_appended
 
-.PHONY: install_vim_deps
-install_vim_deps: $(VIM_DEPS)
-.PHONY: install_vim
-install_vim: install_vim_deps install_mise
-	${prefix}/.local/bin/mise use -g vim@latest
+# .PHONY: install_vim_deps
+# install_vim_deps: $(VIM_DEPS)
+# .PHONY: install_vim
+# install_vim: install_vim_deps install_mise
+# 	${prefix}/.local/bin/mise use -g vim@latest
 
 .PHONY: install_nvim_deps install_neovim
 #install_nvim_deps: $(NVIM_DEPS)
@@ -208,7 +208,7 @@ install_cargo_binstall: install_mise
 
 #NOTE install cargo-binstall for faster installation
 .PHONY: install_tools
-install_tools: links install_deps install_langs install_vim install_neovim install_cargo_binstall
+install_tools: links install_deps install_langs install_neovim install_cargo_binstall
 	eval "$$(${prefix}/.local/bin/mise activate bash --shims)" && MISE_SKIP_RESHIM=1 ${prefix}/.local/bin/mise install
 	${prefix}/.local/bin/mise reshim
 	${prefix}/.local/share/mise/shims/starship config directory.truncation_length 100
