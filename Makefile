@@ -183,7 +183,7 @@ ${prefix}/.local/bin/mise:
 	curl https://mise.run | sh
 
 .PHONY: install_mise
-install_mise: curl ${prefix}/.local/bin/mise append_source
+install_mise: curl ${prefix}/.local/bin/mise append_source links
 
 .PHONY: install_rust
 install_rust: install_mise
