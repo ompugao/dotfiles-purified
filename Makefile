@@ -56,6 +56,10 @@ links: mkdirs install_alacritty_config
 	#ln -sf ${PWD}/.urxvt ${prefix}/.urxvt
 	#cat ${PWD}/.Xdefaults >> ${prefix}/.Xdefaults
 
+.PHONY: link_system_local_mise_config
+link_system_local_mise_config: mkdirs
+	ln -sf ${PWD}/mise_config.local.toml   ${prefix}/.config/mise/config.local.toml
+
 .PHONY: update
 update:
 	git stash save
@@ -67,8 +71,8 @@ update:
 .PHONY: install_deps
 .PHONY: aptget_update
 PKGDEPS = wget curl unzip autoconf git fontconfig tmux build-essential gcc pkg-config
-#VIM_DEPS=python3-dev libncurses-dev luajit libluajit-5.1-dev libacl1-dev libgpm-dev libxtst-dev build-essential gcc libxmu-dev libgtk-3-dev libxpm-dev
-#NVIM_DEPS=ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
+RUBY_DEPS=build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libffi-dev libgmp-dev #rustc
+VIM_DEPS=python3-dev libncurses-dev luajit libluajit-5.1-dev libacl1-dev libgpm-dev libxtst-dev build-essential gcc libxmu-dev libgtk-3-dev libxpm-dev
 NODEJS_DEPS = libatomic1
 ATUIN_DEPS = build-essential gcc
 aptget_update:
@@ -89,17 +93,21 @@ append_source: .source_appended
 	echo "source ${PWD}/.tmux.conf" >> ${prefix}/.tmux.conf
 	touch ${PWD}/.source_appended
 
-# .PHONY: install_vim_deps
-# install_vim_deps: $(VIM_DEPS)
-# .PHONY: install_vim
-# install_vim: install_vim_deps install_mise
-# 	${prefix}/.local/bin/mise use -g vim@latest
+.PHONY: install_vim_deps
+install_vim_deps: $(VIM_DEPS)
+.PHONY: install_vim
+install_vim: link_system_local_mise_config install_vim_deps install_mise
+	${prefix}/.local/bin/mise install vim
+
+.PHONY: install_ruby
+install_ruby: link_system_local_mise_config install_mise $(RUBY_DEPS)
+	${prefix}/.local/bin/mise install ruby
 
 .PHONY: install_nvim_deps install_neovim
 #install_nvim_deps: $(NVIM_DEPS)
 install_neovim: install_mise #install_nvim_deps  # unnecessary to install dependencies since now installing neovim's binary
 	${prefix}/.local/bin/mise plugins install neovim
-	${prefix}/.local/bin/mise use -g neovim@nightly
+	${prefix}/.local/bin/mise install neovim
 
 #.PHONY: install_cmigemo
 #install_cmigemo:
@@ -180,23 +188,23 @@ install_mise: curl ${prefix}/.local/bin/mise append_source
 .PHONY: install_rust
 install_rust: install_mise
 	${prefix}/.local/bin/mise plugins uninstall -y rust  # remove deprecated rust installer
-	${prefix}/.local/bin/mise use -g rust@latest
+	${prefix}/.local/bin/mise install rust
 	${prefix}/.local/share/mise/shims/rustup component add rust-analyzer
 	${prefix}/.local/bin/mise reshim
 
 .PHONY: install_nodejs
 install_nodejs: install_mise $(NODEJS_DEPS)
-	${prefix}/.local/bin/mise use -g node@latest
+	${prefix}/.local/bin/mise install node
 	${prefix}/.local/bin/mise reshim
 
 .PHONY: install_golang
 install_golang: install_mise
-	${prefix}/.local/bin/mise use -g go@latest
+	${prefix}/.local/bin/mise install go
 	${prefix}/.local/bin/mise reshim
 
 .PHONY: install_deno
 install_deno: install_mise
-	${prefix}/.local/bin/mise use -g deno@latest
+	${prefix}/.local/bin/mise install deno
 	${prefix}/.local/bin/mise reshim
 
 .PHONY: install_langs
