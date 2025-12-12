@@ -1,5 +1,4 @@
 [tools]
-#ruby = "3.4.1"
 ripgrep = { version = "latest", exe = "rg" }
 rust = "latest"
 node = "latest"
@@ -10,7 +9,6 @@ uv = "latest"
 starship = "latest"
 ttyd = "latest"
 vhs = "0.7.2"
-#vim = "latest"
 ripgrep-all = "latest"
 fzf = "latest"
 "go:github.com/laurent22/massren" = "latest"
@@ -32,10 +30,6 @@ delta = "latest"
 "github:astral-sh/cargo-dist" = { version = "v0.28.7" }
 "github:crate-ci/typos" = "latest"
 "github:atuinsh/atuin" = "latest"
-#"cargo:https://github.com/ompugao/atuin" = "branch:feat/backspace-with-ctrl-h"
-#"pipx:python-lsp-server" = { version = "latest", all = "" }
-#"pipx:openai-whisper" = "latest"
-#"pipx:git+https://github.com/dtnewman/zev.git" = "latest"
 "npm:@github/copilot" = "latest"
 "npm:@anthropic-ai/claude-code" = "latest"
 "npm:@google/gemini-cli" = "latest"
@@ -46,16 +40,11 @@ usage = "latest"
 #"npm:@markwhen/mw" = "latest"
 #"npm:@mizchi/readability" = "latest"
 #"npm:github:ompugao/readability@branch:feat/fetch_behind_proxy" = "latest"
-#"pipx:oraios/serena" = "latest"
-"pipx:git+https://github.com/oraios/serena.git" = "latest"
+"pipx:oraios/serena" = "latest"
 
 [settings]
 experimental = true
 go_set_gobin = true
-
-[env]
-#ASDF_VIM_CONFIG = "--enable-python3interp=no --enable-luainterp=yes --with-luajit --enable-multibyte --enable-fontset --with-features=huge --with-tlib=ncurses --enable-xim --disable-selinux --enable-fail-if-missing --without-compiledby --enable-terminal"
-RUBY_CONFIGURE_OPTS="--with-baseruby=$HOME/.local/share/mise/installs/ruby/3.4.1/bin/ruby"
 
 [alias]
 universal-ctags = "https://github.com/ompugao/mise-universal-ctags.git"

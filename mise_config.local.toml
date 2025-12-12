@@ -1,0 +1,8 @@
+[tools]
+ruby = "3.4.1"
+vim = "latest"
+
+[env]
+ASDF_VIM_CONFIG = "--enable-python3interp=no --enable-luainterp=yes --with-luajit --enable-multibyte --enable-fontset --with-features=huge --with-tlib=ncurses --enable-xim --disable-selinux --enable-fail-if-missing --without-compiledby --enable-terminal"
+RUBY_CONFIGURE_OPTS="--with-baseruby=$HOME/.local/share/mise/installs/ruby/3.4.1/bin/ruby"
+
