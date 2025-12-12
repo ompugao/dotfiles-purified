@@ -19,7 +19,7 @@ jobs:
     - name: Extract Makefile targets
       id: get-targets
       run: |
-        targets=$(grep -E '^\.PHONY:' Makefile | sed 's/^\.PHONY: //' | tr ' ' '\n' | sort -u | jq -R -s -c 'split("\n") | map(select(. != "update" and . != "set_gnome_shortcuts" and . != "set_xfce_shortcuts" and length > 0))')
+        targets=$(grep -E '^\.PHONY:' Makefile | sed 's/^\.PHONY: //' | tr ' ' '\n' | sort -u | jq -R -s -c 'split("\n") | map(select(. != "update" and . != "set_gnome_shortcuts" and . != "set_xfce_shortcuts" . != "install_patto" and length > 0))')
         echo "targets=$targets" >> $GITHUB_OUTPUT
         echo "Found targets:"
         echo "$targets" | jq .
