@@ -1,5 +1,5 @@
 [tools]
-ruby = "3.4.1"
+#ruby = "3.4.1"
 ripgrep = { version = "latest", exe = "rg" }
 rust = "latest"
 node = "latest"
@@ -10,7 +10,7 @@ uv = "latest"
 starship = "latest"
 ttyd = "latest"
 vhs = "0.7.2"
-vim = "latest"
+#vim = "latest"
 ripgrep-all = "latest"
 fzf = "latest"
 "go:github.com/laurent22/massren" = "latest"
@@ -54,7 +54,7 @@ experimental = true
 go_set_gobin = true
 
 [env]
-ASDF_VIM_CONFIG = "--enable-python3interp=no --enable-luainterp=yes --with-luajit --enable-multibyte --enable-fontset --with-features=huge --with-tlib=ncurses --enable-xim --disable-selinux --enable-fail-if-missing --without-compiledby --enable-terminal"
+#ASDF_VIM_CONFIG = "--enable-python3interp=no --enable-luainterp=yes --with-luajit --enable-multibyte --enable-fontset --with-features=huge --with-tlib=ncurses --enable-xim --disable-selinux --enable-fail-if-missing --without-compiledby --enable-terminal"
 RUBY_CONFIGURE_OPTS="--with-baseruby=$HOME/.local/share/mise/installs/ruby/3.4.1/bin/ruby"
 
 [alias]
