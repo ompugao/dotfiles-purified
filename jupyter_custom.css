@@ -1,0 +1,13 @@
+// copy this file to ~/.jupyter/custom/custom.css
+
+.container {
+    width: 99% !important;
+}   
+
+div.cell.selected {
+    border-left-width: 1px !important;	
+}
+
+div.output_scroll {
+    resize: vertical !important;
+}

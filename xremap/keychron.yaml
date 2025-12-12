@@ -1,0 +1,36 @@
+modmap:
+  - name: Global
+    remap:
+      KEY_CAPSLOCK: Ctrl_L
+      KEY_MUHENKAN: Ctrl_L
+      KEY_HENKAN: Alt_L
+      KEY_RO: Alt_L
+      KEY_YEN: BACKSPACE
+      CONTROL_L:
+        press: { launch: ["xdotool", "mousedown", "1"] }
+        release: { launch: ["xdotool", "mouseup", "1"] }
+keymap:
+  - name: Tab shifting
+    remap:
+      LEFTCTRL-COMMA: LEFTCTRL-PAGEUP
+      LEFTCTRL-DOT: LEFTCTRL-PAGEDOWN
+      LEFTCTRL-LEFTSHIFT-COMMA: LEFTCTRL-LEFTSHIFT-COMMA
+      LEFTCTRL-LEFTSHIFT-DOT: LEFTCTRL-LEFTSHIFT-DOT
+  - name: Escape
+    remap:
+      LEFTCTRL-LEFTBRACE: ESC
+  - name: Global
+    remap:
+      ALT-n: LEFTCTRL-PAGEDOWN
+      ALT-p: LEFTCTRL-PAGEUP
+      ALT-h: LEFTCTRL-PAGEUP
+      ALT-j: LEFTCTRL-PAGEUP
+      ALT-k: LEFTCTRL-PAGEDOWN
+      ALT-l: LEFTCTRL-PAGEDOWN
+      # SUPER-f: LEFTCTRL-PAGEDOWN
+      # SUPER-d: LEFTCTRL-PAGEUP
+      ALT-r: LEFTCTRL-PAGEDOWN
+      ALT-e: LEFTCTRL-PAGEUP
+      ALT-v: LEFTALT-F1
+      ALT-a: LEFTALT-F1
+      ALT-c: LEFTALT-F2

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/local/bin/xremap --watch=config --watch=device --device="ThinkPad" --device="Asus Keyboard" --device="Keychron" /home/sifi/.config/xremap/keychron.yaml
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=xremap
+Comment=

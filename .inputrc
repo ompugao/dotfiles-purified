@@ -1,0 +1,54 @@
+##################
+# キーバインド
+##################
+
+# emacsキーバインド
+set editing-mode emacs
+
+# \M-hで後方の単語削除を行う
+"\eh": backward-kill-word
+
+# C-x C-rで設定ファイル再読み込み
+"\C-x\C-r": re-read-init-file
+
+# \M-wでコピー
+"\ew": copy-region-as-kill
+
+# コマンドを履歴から補完
+"\C-p": history-search-backward
+"\C-n": history-search-forward
+"\C-s": forward-search-history
+# \C-SPCでmark
+"\C-spc": set-mark
+
+##################
+# 日本語設定
+##################
+
+# 8bit設定
+set convert-meta off
+set input-meta on
+set output-meta on
+
+##################
+# 入力補助
+##################
+
+# 画面自動スクロール
+set horizontal-scroll-mode off
+
+# ディレクトリを補完したときに最後に/をつける
+set mark-directories on
+
+# 隠しファイルを補完対象にする
+set match-hidden-files on
+
+# tab一回で補完候補を表示
+#set show-all-if-ambiguous on
+
+##################
+# その他
+##################
+
+# ビープ音を鳴らさない
+set bell-style none

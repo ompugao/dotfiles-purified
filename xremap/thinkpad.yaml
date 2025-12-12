@@ -1,0 +1,51 @@
+# virtual_modifiers:
+#   - KEY_KATAKANAHIRAGANA
+#   - RO
+
+modmap:
+  - name: Global
+    remap:
+      KEY_CAPSLOCK: Ctrl_L
+      KEY_MUHENKAN: Ctrl_L
+      KEY_HENKAN: Alt_L
+      KEY_RO: Alt_L
+      KEY_KATAKANAHIRAGANA: SUPER_L
+      # KEY_YEN: SUPER_L
+      KEY_YEN: KEY_BACKSPACE
+
+keymap:
+  - name: Tab shifting
+    remap:
+      LEFTCTRL-COMMA: LEFTCTRL-PAGEUP
+      LEFTCTRL-DOT: LEFTCTRL-PAGEDOWN
+      LEFTCTRL-LEFTSHIFT-COMMA: LEFTCTRL-LEFTSHIFT-COMMA
+      LEFTCTRL-LEFTSHIFT-DOT: LEFTCTRL-LEFTSHIFT-DOT
+  - name: Escape
+    remap:
+      LEFTCTRL-LEFTBRACE: ESC
+  - name: Global
+    remap:
+      ALT-n: LEFTCTRL-PAGEDOWN
+      ALT-p: LEFTCTRL-PAGEUP
+      # ALT-h: LEFTCTRL-PAGEUP
+      SUPER-j: LEFTCTRL-PAGEUP
+      SUPER-k: LEFTCTRL-PAGEDOWN
+      ALT-j: LEFTCTRL-PAGEUP
+      ALT-k: LEFTCTRL-PAGEDOWN
+      # ALT-l: LEFTCTRL-PAGEDOWN
+      # SUPER-f: LEFTCTRL-PAGEDOWN
+      # SUPER-d: LEFTCTRL-PAGEUP
+      # ALT-r: LEFTCTRL-PAGEDOWN
+      # ALT-e: LEFTCTRL-PAGEUP
+      ALT-v: ALT_L-F1
+      ALT-a: ALT_L-F1
+      ALT-c: ALT_L-F2
+      ALT-1: F1
+      ALT-2: F2
+      ALT-3: F3
+      ALT-4: F4
+      ALT-5: F5
+      ALT-6: F6
+      ALT-7: F7
+      ALT-8: F8
+      ALT-9: F9

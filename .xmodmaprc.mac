@@ -1,0 +1,41 @@
+keycode 97 = grave asciitilde Cyrillic_io Cyrillic_IO
+keycode 132 = grave asciitilde Cyrillic_io Cyrillic_IO
+
+! keycode 64 = Super_L NoSymbol Super_L
+! keycode 133 = Alt_L Meta_L Alt_L Meta_L
+
+! 
+! clean most of the modifiers
+clear control
+!! clear mod4
+!! clear mod1
+
+! -----------------
+! left side
+! ----------------
+! keycode 64 is the left alt key
+!! keycode 64 = Super_L
+! key code 133 is the left command key
+!! keycode 133 = Alt_L Meta_L
+
+! ------------------
+! right side
+! -------------------
+! key code 134 is the right command key
+! keycode 134 = Alt_R Meta_R
+! keycode 108 is the right alt key
+! keycode 108 = Control_R
+
+! set caps_lock as Control_L
+remove Lock = Caps_Lock
+add Control = Caps_Lock
+keysym Caps_Lock = Control_L
+!remove Control = Control_L
+! keycode 102 = Escape
+! keycode 100 = Control_L NoSymbol Control_L NoSymbol Control_L
+
+!! add mod4 = Super_L
+!! add mod1 = Alt_L Meta_L
+!! add mod1 = Alt_R Meta_R
+add control = Control_L
+add control = Control_R

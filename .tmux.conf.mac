@@ -1,0 +1,5 @@
+# set-option -g default-command 'reattach-to-user-namespace -l zsh'
+# bind-key > run 'tmux save-buffer - | reattach-to-user-namespace pbcopy'
+# bind-key < run 'reattach-to-user-namespace pbpaste | tmux load-buffer - && tmux paste-buffer'
+bind-key > run-shell "tmux save-buffer - | nc localhost 8377"
+

@@ -1,0 +1,64 @@
+name: Test Dotfiles
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  extract-targets:
+    runs-on: ubuntu-latest
+    outputs:
+      targets: ${{ steps.get-targets.outputs.targets }}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Extract Makefile targets
+      id: get-targets
+      run: |
+        targets=$(grep -E '^\.PHONY:' Makefile | sed 's/^\.PHONY: //' | tr ' ' '\n' | sort -u | jq -R -s -c 'split("\n") | map(select(. != "update" and . != "set_gnome_shortcuts" and . != "set_xfce_shortcuts" and length > 0))')
+        echo "targets=$targets" >> $GITHUB_OUTPUT
+        echo "Found targets:"
+        echo "$targets" | jq .
+
+  test-all-targets:
+    needs: extract-targets
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ${{ fromJson(needs.extract-targets.outputs.targets) }}
+    
+    container:
+      image: ubuntu:latest
+      options: --user root
+    
+    steps:
+    - name: Install basic dependencies
+      run: |
+        apt-get update
+        DEBIAN_FRONTEND=noninteractive apt-get install -y sudo git make curl wget ca-certificates
+    
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+    
+    - name: Create test user
+      run: |
+        useradd -m -s /bin/bash testuser
+        echo "testuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+        chown -R testuser:testuser $GITHUB_WORKSPACE
+    
+    - name: Test make ${{ matrix.target }}
+      run: |
+        su - testuser -c "cd $GITHUB_WORKSPACE && make ${{ matrix.target }}"
+      continue-on-error: false
+      timeout-minutes: 30
+    
+    - name: Check result
+      run: |
+        echo "Target ${{ matrix.target }} completed"

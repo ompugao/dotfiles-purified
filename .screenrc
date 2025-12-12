@@ -1,0 +1,14 @@
+defencoding utf8
+escape ^q^q
+bind w windowlist -b
+startup_message off
+caption always "%{=b kg}%Y/%m/%d %{=b kg}%c:%s %{= kw} %-w%{=bu by}%n %t%{-}%+w %="
+#caption always "%{= wg} %-w%{=bu dr}%n %t%{-}%+w %= %{=b wm}%Y/%m/%d %{=b wm}%c:%s"
+defscrollback 500000
+altscreen on
+vbell off
+attrcolor b ".I"
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+defbce on 
+termcapinfo xterm* ti@:te@
+

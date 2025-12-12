@@ -1,0 +1,7 @@
+compctl -g '*.dvi' xdvi dviselect dvips dvipdfm dvipdfmx
+compctl -g '*.lzma' lzcat
+compctl -g '*.tex' platex ptex
+compctl -c watch
+compctl -g '*.(BMP|GIF|JPEG|JPG|PNG|bmp|gif|jpeg|jpg|png)' qiv
+compctl -g '*.(mkv|mka|mks)' mkvinfo
+compctl -g '*.(ps|eps|pdf)' + -g '*(/)' evince

@@ -1,0 +1,20 @@
+;; install:
+;; curl -fsSkL https://raw.github.com/cask/cask/master/go | python
+(source gnu)
+(source melpa)
+
+(depends-on "evil")
+(depends-on "evil-visualstar" :git "https://github.com/bling/evil-visualstar")
+(depends-on "magit")
+
+(depends-on "auto-complete" :git "https://github.com/auto-complete/auto-complete")
+;;(depends-on "redo")
+(depends-on "doc-view")
+(depends-on "color-theme")
+(depends-on "replace-colorthemes" :git "https://github.com/emacs-jp/replace-colorthemes.git")
+(depends-on "rainbow-delimiters")
+(depends-on "rosemacs" :git "https://github.com/moesenle/rosemacs-debs")
+(depends-on "flymake" :git "https://github.com/illusori/emacs-flymake")
+(depends-on "helm" :git "https://github.com/emacs-helm/helm")
+(depends-on "helm-ag" :git "https://github.com/syohex/emacs-helm-ag")
+(depends-on "magit" :git "https://github.com/magit/magit")

@@ -1,0 +1,15 @@
+#!/bin/bash
+id_rsas=0
+# id_rsa*の数をカウント
+for file in `ls ~/.ssh/` ; do
+    if expr ${file} : id_rsa > /dev/null; then
+        let id_rsas="${id_rsas} + 1"
+    fi
+done
+#echo id_rsa files:${id_rsas}
+if [ `ssh-add -l | grep -c 'id_rsa.*'` -eq ${id_rsas} ] ; then
+	echo "ssh-agent: All identities are already stored."
+else
+    ssh-add `ls ~/.ssh/id_rsa* | grep -v ".*.pub"`
+fi
+unset id_rsas

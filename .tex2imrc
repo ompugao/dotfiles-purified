@@ -1,0 +1,7 @@
+resolution="300x300"
+format="eps"
+color1="white"
+color2="black"
+extra_header="~/.tex2im_header"
+trans=1
+aa=0

@@ -1,0 +1,34 @@
+# Allow for functions in the prompt.
+setopt PROMPT_SUBST
+
+autoload -U colors && colors
+
+if `which rbenv >/dev/null 2>&1` && [ -z "$RBENV_ROOT" ]; then
+    export RBENV_ROOT=`rbenv root`
+fi
+
+rbenv_version() {
+    if [ -n "$RBENV_ROOT" ]; then
+        VERSION=''
+        NOTFOUND=''
+        if [ -r .ruby-version ]; then
+            VERSION=`cat .ruby-version`
+            ls "${RBENV_ROOT}/versions" | egrep "^$VERSION$" >/dev/null 2>&1 || NOTFOUND='{?}'
+        else
+            VERSION=`cat "${RBENV_ROOT}/version"`
+        fi
+        echo "%{$fg[red]%}[$VERSION]$NOTFOUND%{$reset_color%}"
+    fi
+}
+
+rbenv_active_gemset() {
+    if [ -n "$RBENV_ROOT" ]; then
+        if [ `rbenv commands | grep gemset | wc -l` -eq 1 ]; then 
+            ACTIVE_GEMSET=`rbenv gemset active`
+            echo "%{$fg[yellow]%}[$ACTIVE_GEMSET]%{$reset_color%}"
+        fi
+    fi
+}
+
+RPROMPT+=" $(rbenv_version)"
+#RPROMPT+=" $(rbenv_version) $(rbenv_active_gemset)"

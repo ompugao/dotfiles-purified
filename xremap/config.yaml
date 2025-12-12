@@ -1,0 +1,15 @@
+keymap:
+  - name: BaroccoMD770 # Optional
+    remap: # Required
+      C-KEY_F11: KEY_BRIGHTNESSUP
+      C-KEY_F12: KEY_BRIGHTNESSDOWN
+
+
+modmap:
+  - name: BaroccoMD770 
+    remap:
+      KEY_SPACE:
+        held: Alt_L
+        alone: KEY_SPACE
+        alone_timeout_millis: 1000
+

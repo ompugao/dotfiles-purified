@@ -1,0 +1,21 @@
+#!/bin/bash
+
+git-aicommit() {
+  local DIFF
+  DIFF="$(git diff --cached)"
+  if [ -z "$DIFF" ]; then
+    echo "No staged changes. Use 'git add' first."; return 1
+  fi
+
+  local COMMITMSG
+  COMMITMSG="$(copilot -s --model claude-sonnet-4.5 \
+    -p "Generate ONLY a one-line Git commit message in English, imperative mood, summarizing what was changed and why, based strictly on the contents of the following \`git diff --cached\`. Do NOT add command output. Do not add explanation or a body. Output only the commit summary line.: $DIFF" \
+  )"
+
+  # Keep it to a single line in case the model tries to add text
+  COMMITMSG="$(printf "%s" "$COMMITMSG" | head -n1 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
+
+  git commit -m "$COMMITMSG" -e
+}
+
+git-aicommit
